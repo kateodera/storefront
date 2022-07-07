@@ -1,9 +1,13 @@
 from dataclasses import fields
 from enum import auto
 from operator import index
+from pickle import TRUE
 from django.db import models
+from django.core.validators import MinValueValidator
 
 # Create your models here.
+
+
 class Promotion(models.Model):
     description = models.CharField(max_length=255)
     discount = models.FloatField()
@@ -12,18 +16,31 @@ class Collection(models.Model):
     title = models.CharField(max_length=255)
     featured_product = models.ForeignKey('Product', on_delete= models.SET_NULL, null =True, related_name='+')
 
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        ordering = ['title']
+
+
 class Product(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField()
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
-    inventory = models.IntegerField()
+    unit_price = models.DecimalField(
+        max_digits=6, 
+        decimal_places=2,
+        validators=[MinValueValidator(1)])
+    inventory = models.IntegerField(validators=[MinValueValidator(1)])
     last_update = models.DateTimeField(auto_now=True)
-    collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
-    promotions = models.ManyToManyField(Promotion)
+    collection = models.ForeignKey(Collection, on_delete=models.PROTECT, related_name='product')
+    promotions = models.ManyToManyField(Promotion, blank=TRUE)
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['title']
 
 class Customer(models.Model):
     # Membership definition
@@ -43,12 +60,16 @@ class Customer(models.Model):
     phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True)
     membership_model = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
-
+    
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+    
     class Meta:
         db_table = "store_customer"
         indexes = [
             models.Index(fields = ['last_name', 'first_name'])
         ]
+        ordering = ['first_name', 'last_name']
         
 class Order(models.Model):
     PAYMENT_PENDING = 'P'
@@ -66,7 +87,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.PROTECT)
-    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name='orderitems')
     quantity = models.PositiveSmallIntegerField()
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
 
@@ -83,4 +104,10 @@ class Address(models.Model):
     city = models.CharField(max_length=255)
     zip = models.CharField(max_length=255, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='review')
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    date = models.DateField(auto_now_add=True)
 

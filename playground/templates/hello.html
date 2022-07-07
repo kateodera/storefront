@@ -1,3 +1,6 @@
+
+<html>
+<body>
 {%if name%}
 <h1>
     Hello {{name}}
@@ -8,3 +11,9 @@
     Hello world
 </h1>
 {%endif%}
+{%for result in results%}
+{{result.first_name}} -{{result.total_spent}} 
+{%endfor%}
+
+</body>
+</html>
