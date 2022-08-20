@@ -1,0 +1,80 @@
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Unauthorized: /playground/hello/
+Method Not Allowed: /auth/jwt/create
+Method Not Allowed: /playground/hello/
+/home/cate/Desktop/code/storefront/playground/views.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Method Not Allowed: /playground/hello/
+/home/cate/Desktop/code/storefront/playground/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/home/cate/Desktop/code/storefront/playground/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+/home/cate/Desktop/code/storefront/playground/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Method Not Allowed: /playground/hello/
+/home/cate/Desktop/code/storefront/playground/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/cate/Desktop/code/storefront/playground/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/cate/Desktop/code/storefront/playground/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Internal Server Error: /playground/hello/
+Traceback (most recent call last):
+  File "/home/cate/Desktop/code/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/cate/Desktop/code/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: say_hello() missing 1 required positional argument: 'request'
+/home/cate/Desktop/code/storefront/playground/views.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Calling Httpbin
+Received response
+/home/cate/Desktop/code/storefront/playground/views.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Calling Httpbin
+Received response
+Internal Server Error: /playground/hello/
+Traceback (most recent call last):
+  File "/home/cate/Desktop/code/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/cate/Desktop/code/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/cate/Desktop/code/storefront/playground/views.py", line 36, in say_hello
+    return render(request, 'hello.html', {'name': Kate})
+NameError: name 'Kate' is not defined
+/home/cate/Desktop/code/storefront/playground/views.py changed, reloading.
+Watching for file changes with StatReloader
+Cannot execute silk_profile as silk is not installed correctly.
+Calling Httpbin
+Received response
+/home/cate/Desktop/code/storefront/storefront/settings.py changed, reloading.
+2022-08-17 20:10:29,221 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2022-08-17 20:10:29,307 (WARNING) - silk.profiling.profiler - Cannot execute silk_profile as silk is not installed correctly.
+2022-08-17 20:10:36,744 (INFO) - playground.views - Calling Httpbin
+2022-08-17 20:10:39,383 (INFO) - playground.views - Received response
+2022-08-17 20:10:59,463 (INFO) - playground.views - Calling Httpbin
+2022-08-17 20:11:02,275 (INFO) - playground.views - Received response
+2022-08-20 08:12:02,264 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2022-08-20 08:12:02,574 (WARNING) - silk.profiling.profiler - Cannot execute silk_profile as silk is not installed correctly.
+2022-08-20 08:17:37,490 (WARNING) - django.request - Not Found: /favicon.ico
+2022-08-20 08:18:19,540 (WARNING) - django.request - Bad Request: /store/collections/
+2022-08-20 08:18:19,572 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:18:19,584 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:18:19,644 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:18:19,652 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:20:19,725 (INFO) - django.utils.autoreload - /home/cate/Desktop/code/storefront/storefront/settings/common.py changed, reloading.
+2022-08-20 08:20:20,701 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2022-08-20 08:20:20,789 (WARNING) - silk.profiling.profiler - Cannot execute silk_profile as silk is not installed correctly.
+2022-08-20 08:23:32,521 (WARNING) - django.request - Bad Request: /store/collections/
+2022-08-20 08:23:32,779 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:23:32,860 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:23:32,942 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:23:33,026 (WARNING) - django.request - Bad Request: /store/products/
+2022-08-20 08:26:38,623 (WARNING) - silk.profiling.profiler - Cannot execute silk_profile as silk is not installed correctly.

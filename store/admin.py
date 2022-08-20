@@ -7,9 +7,21 @@ from . import models
 
 
 # Register your models here.
+class ProductImageInline(admin.TabularInline):
+    model = models.ProductImages
+    max_num = 10
+    min_num = 1
+    extra = 0
+    readonly_fields = ['thumbnail']
+
+    def thumbnail(self, instance):
+        if instance.image.name != '':
+            return format_html(f'<img src ="{instance.image.url}" class="thumbnail"/>')
+        return ''
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
+    inlines = [ProductImageInline]
     search_fields=['title']
     prepopulated_fields ={
         'slug':['title']
@@ -39,6 +51,11 @@ class ProductAdmin(admin.ModelAdmin):
             f'{updated_count} products were successfully updated',
             messages.ERROR
         )
+    
+    class Media:
+        css = {
+            'all':['store/style.css']
+        }
 
 @admin.register(models.Customer)
 class CustomerAdmin(admin.ModelAdmin):
@@ -46,8 +63,8 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'membership_model', 'orders']
     list_editable = ['membership_model']
     list_per_page = 10
-    ordering= ['first_name', 'last_name']
-    search_fields = ['first_name__istarts_with', 'last_name__istarts_with']
+    ordering= ['user__first_name', 'user__last_name']
+    search_fields = ['user__first_name__istarts_with', 'user__last_name__istarts_with']
 
     @admin.display(ordering='orders')
     def orders(self, customer):
@@ -57,7 +74,7 @@ class CustomerAdmin(admin.ModelAdmin):
         }))
        return format_html('<a href = {}>{}</a>', url,customer.orders)
         
-
+    
 
     def get_queryset(self, request) :
         return super().get_queryset(request).annotate(
